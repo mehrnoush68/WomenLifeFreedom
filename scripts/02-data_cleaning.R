@@ -8,26 +8,16 @@
 
 # Workspace setup
 library(tidyverse)
-library(magrittr)
-library(readr)
-library(dplyr)
 
-# List of input files
-input_files <- c("Protest_data.csv")
+# Read data
+data <- read_csv("data/raw_data/Iran-protests-raw-data.csv")
 
-# Create output file names
-output_files <- paste0("cleaned_", tools::file_path_sans_ext(input_files), ".csv")
+# Clean data
+# remove parentheses from column names
+colnames(data) <- gsub("\\(|\\)", "", colnames(data))
 
-# Loop over input files
-for (i in seq_along(input_files)) {
-  # Read data
-  data <- read_csv(file.path("data/analysis_data", input_files[i]))
-  
-  # Clean data
-  # Example cleaning: remove parentheses from column names
-  colnames(data) <- gsub("\\(|\\)", "", colnames(data))
-  
-  # Write cleaned data to output file
-  write_csv(data, file.path("data/cleaned_data", output_files[i]))
-}
+# Convert data to data frame
+data <- as.data.frame(data)
 
+# Write cleaned data to output file
+write_csv(data, "data/cleaned_data/cleaned_Protest_data.csv") 
