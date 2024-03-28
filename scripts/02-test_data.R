@@ -5,16 +5,17 @@
 # Contact: mm.mohammadi@mail.utoronto.ca
 # License: MIT
 # Pre-requisites:
-  # 01-download_data.R
-  # 02-data_cleaning.R
+  # 01-data_cleaning.R
 
 
 #### Workspace setup ####
 library(tidyverse)
 library(readr)
 
+#### Read data ####
+protest_data <- read_parquet("data/analysis_data/cleaned_protest_data.parquet")
+
 #### Test data ####
-protest_data <- read_csv(file = "data/cleaned_data/cleaned_Protest_data.csv", show_col_types = FALSE)
 
 # Test 1: Check for missing values in each dataset
 missing_values <- colSums(is.na(protest_data))
@@ -25,6 +26,6 @@ duplicate_rows <- anyDuplicated(protest_data)
 print(duplicate_rows)
 
 # Test 3: Check that the date range is within expected bounds
-protest_Date <- as.Date(protest_data$Date, format = "%m/%d/%Y")
+protest_Date <- protest_data$date
 print(min(protest_Date))
 print(max(protest_Date))
