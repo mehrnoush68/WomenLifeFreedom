@@ -8,16 +8,18 @@
 
 # Workspace setup
 library(tidyverse)
+library(arrow)
 
 # Read data
-data <- read_csv("data/raw_data/Iran-protests-raw-data.csv")
+data <- arrow::read_parquet("data/analysis_data/protest_data.parquet")
 
 # Clean data
 # remove parentheses from column names
 colnames(data) <- gsub("\\(|\\)", "", colnames(data))
 
-# Convert data to data frame
-data <- as.data.frame(data)
+# Convert data to data frame if necessary (arrow::read_parquet should return a data frame)
+# data <- as.data.frame(data)
 
 # Write cleaned data to output file
-write_csv(data, "data/cleaned_data/cleaned_Protest_data.csv") 
+arrow::write_parquet(data, "data/cleaned_data/cleaned_Protest_data.parquet") 
+
