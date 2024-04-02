@@ -11,6 +11,7 @@
 #### Workspace setup ####
 library(tidyverse)
 library(readr)
+library(arrow)
 
 #### Read data ####
 protest_data <- read_parquet("data/analysis_data/cleaned_protest_data.parquet")
