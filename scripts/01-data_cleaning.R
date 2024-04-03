@@ -31,7 +31,7 @@ cleaned_data <- raw_data |>
     Children.Killed = number_of_children_killed,
     Detainees = number_of_detainees_identified,
     Arrested.students = number_of_students_arrested,
-    Involved.Cities = number_of_cities_involved,
+    Cities = number_of_cities_involved,
     Universities = number_of_universities_involved,
     Protests = number_of_protests,
     Protesters.Killed = death_toll_of_protestors

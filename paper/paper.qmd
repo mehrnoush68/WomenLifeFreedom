@@ -8,6 +8,7 @@ date-format: long
 abstract: "The 2022 Iran protests were a significant period of civil unrest that brought attention to social inequality, political repression, and human rights violations. However, limited official data on the protests is available, which means we have to rely on estimates from organizations like the Human Rights Activists News Agency (HRANA). In this paper, we have analyzed a dataset compiled from HRANA's reports to provide insights into the dynamics of the protests, the extent of government crackdowns, and the scale of public discontent."
 format: pdf
 number-sections: true
+toc: true
 bibliography: references.bib
 ---
 
@@ -17,7 +18,6 @@ bibliography: references.bib
 #| message: false
 
 library(tidyverse)
-library(palmerpenguins)
 library(ggplot2)
 library(dplyr)
 library(arrow)
@@ -38,17 +38,21 @@ On 16 September 2022, Mahsa Amini, a 22-year-old woman died under police custody
 
 There have been protests in Iran due to various issues such as gender inequality, political oppression, and economic hardships. These issues were further amplified by the tragic death of Mahsa Amini. The protesters, under the banner of "Zan, Zendegi, Azadi" (Women, Life, Freedom), expressed their dissatisfaction with the government. However, there is no official data about the number of casualties, arrests, and other important metrics. To analyze the dynamics of the protests, the government's response, and the extent of public discontent, this paper uses data compiled by the Human Rights Activists News Agency (HRANA) [@justin_oh_2022].
 
-Result paragraph??
+The dataset used in this analysis reveals compelling insights into the 2022 Iran protests. Over a period of 158 days, the data documented 62624 protesters killed, 6142 universities involved, 221 cities participating, and 2,385,074 individuals arrested, among whom 77,440 were students. These numbers underscore the gravity of the protests and the widespread dissatisfaction among the Iranian public, as well as the significant involvement of students in the movement.
 
-To further understand "Women Life, Freedom" movement, in [Data] and [Result], I talk about the nature of the data obtained and analyze the results garnered from the data with suitable tables and charts. Next, [Discussion] provides further insights and future areas of study. Finally, [Conclusion] summarizes my main findings. 
+To further understand "Women Life, Freedom" movement, in [Data] and [Results], I talk about the nature of the data obtained and analyze the results garnered from the data with suitable tables and charts. Next, [Discussion] provides further insights and future areas of study. Finally, [Conclusion] summarizes my main findings. 
 
-The graphs and tables in this paper were created in R Studio using R [@citeR] and the analysis in a Quarto document. The analysis was conducted with the use of the `ggplot` [@ggplotRef], `tiddyverse` [@tidyverseRef], `knitr` [@knitrRef], `readr` [@readRef], `kableExtra` [@kableextraRef], `janitor` [@janitorRef] and `dyplr` [@dplRef ] packages.
+The graphs and tables in this paper were created in R Studio using R [@citeR] and the analysis in a Quarto document. The analysis was conducted with the use of the `ggplot` [@ggplotRef], `tiddyverse` [@tidyverseRef], `knitr` [@knitrRef], `readr` [@readRef], `kableExtra` [@kableextraRef], `janitor` [@janitorRef], `tibble` [@tibbleRef], `arrow` [@arrow] and `dyplr` [@dplRef ] packages.
+
 
 # Data {#sec-data}
 
 The dataset used in this analysis comprises estimates compiled by HRANA [@justin_oh_2022], documenting various aspects of the 2022 Iran protests. This includes statistics on casualties, arrests, protests, and involvement across different cities and universities. While these estimates provide valuable insights, it's important to note that they may not capture the full scope of the protests due to limitations in data collection methods.
 
+@tbl-protest-data provides a snapshot of the dataset, including the date, number of protesters killed, number of protests, number of universities involved, number of cities involved, total number of individuals arrested, and number of arrested students.
+
 ```{r}
+#| label: tbl-protest-data
 #| echo: false
 #| include: true
 #| warning: false
@@ -64,17 +68,19 @@ random_dates <- as.character(random_dates)
 
 # Selecting columns
 selected_columns <- protest_data[protest_data$Date %in% random_dates, 
-                                 c("Date", "Protesters.Killed", "Protests", "Universities", "Involved.Cities", "Arrested")]
+                                 c("Date", "Protesters.Killed", "Protests", "Universities", "Cities", "Arrested", "Arrested.students")]
 
 kable(selected_columns, 
       format = "markdown", 
       align = "c",
-      caption = "Dataset Compiled By HRANA",
-      label = "tbl-protest_data")|>
+      caption = "Ten Random Dataset Compiled By HRANA",
+      label = "tbl-protest-data")|>
   kable_styling(latex_options = c("striped", "hold_position"), bootstrap_options = "striped", full_width = FALSE)
 
 
 ```
+
+@fig-protests-protesters-killed illustrates the trend in the number of protests and the total number of protesters killed over 158 days. The left panel shows the number of protests recorded each day, while the right panel displays the total number of protesters killed on those respective days. This visual representation helps in understanding the dynamics between the intensity of protests and the level of violence during the specified period.
 
 ```{r}
 #| label: fig-protests-protesters-killed
@@ -98,10 +104,28 @@ ggplot(protest_data, aes(x = Date, y = Protesters.Killed)) +
 
 ```
 
+The @fig-arrested illustrates the dynamics of arrests during the 2022 Iran protests over a period of 158 days. The x-axis represents the timeline, spanning from the start to the end of the protest period, while the y-axis denotes the number of arrests. 
 
-# Results
+The @fig-arrested features two lines: one depicting the cumulative count of individuals arrested (denoted by "Individuals Arrested" in black), and the other showing the cumulative count of students arrested (denoted by "Students Arrested" in dark gray). The plot provides a visual comparison between the total number of arrests and the subset of arrests involving students, offering insights into the extent of student involvement in the protests and the overall scale of government crackdowns during the observed period.
 
-According to the analysis, there has been a continuous increase in the number of protests over a period of 158 days, which signifies that the public's dissatisfaction has been persistent. Moreover, the dataset shows that the intensity of protests has varied significantly across different cities and universities, indicating regional differences within the protest movement.
+```{r}
+#| label: fig-arrested
+#| include: true
+#| fig-cap: Number of Individuals and student Arrested in 158 Days
+#| warning: false
+#| message: false
+#| echo: false
+
+ggplot(protest_data, aes(x = Date)) +
+  geom_line(aes(y = Arrested, color = "Individuals Arrested")) +
+  geom_line(aes(y = Arrested.students, color = "Students Arrested")) +
+  labs(x = "Date", y = "Number of Arrests", color = "Type of Arrest") +
+  scale_color_manual(values = c("Individuals Arrested" = "black", "Students Arrested" = "darkgray")) +
+  theme_minimal()
+
+```
+
+@fig-arrests-detainees illustrates the cumulative count of arrests and detainees identified over time during the protests. The area chart displays the progression of these two metrics, providing insights into the trend of arrests and detentions throughout the specified period. The light gray area represents the cumulative count of individuals arrested, while the dark gray area represents the cumulative count of detainees identified.
 
 ```{r}
 #| include: true
@@ -115,31 +139,150 @@ ggplot(protest_data, aes(x = as.Date(Date, format="%m/%d/%Y"))) +
   geom_area(aes(y = Arrested, fill = "Individuals Arrested")) +
   geom_area(aes(y = Detainees, fill = "Detainees Identified")) +
   theme_minimal() +
-  labs(x = "Date", y = "Cumulative Count") +
-  scale_fill_manual(values = c("Individuals Arrested" = "gray", "Detainees Identified" = "darkgray"))
+  labs(x = "Date", y = "Cumulative Count", fill = "Fill") +
+  scale_fill_manual(values = c("Individuals Arrested" = "lightgray", "Detainees Identified" = "darkgray"))
 
 ```
+
+# Results
+
+Based on the analysis, the number of protests has continuously increased over a 158-day period, indicating persistent dissatisfaction among the public. Additionally, the dataset displays significant variations in the intensity of protests across different cities and universities, implying regional differences within the protest movement.
+
+The analysis provides compelling insights into the arrest dynamics during the 158 days. The @fig-total-arrested depicts the total number of individuals arrested compared to the subset of students among them.
+
+The @fig-total-arrested illustrates the stark difference between the total number of individuals arrested and the number of students among them. The dark gray bars represent the total number of arrested individuals, while the light gray bars specifically denote the total number of students arrested. This visualization effectively highlights the proportion of students within the broader context of arrests during the protests.
+
+According to the data, 2,385,074 individuals were arrested during this period, among whom 77,440 were students, indicating that students comprised approximately 3.25% of all arrested individuals. The dynamics of arrests during protests can reveal important information about the consequences for those involved. For instance, according to @fig-total-arrested, a relatively small number of students were among those arrested, which raises concerns about whether certain groups of people were unfairly targeted or profiled by law enforcement officials. This situation highlights the necessity for more scrutiny and investigation into potential inequalities and injustices within the judicial and law enforcement systems.
+
+```{r}
+#| label: fig-total-arrested
+#| include: true
+#| fig-cap: Total of Individuals and Student Who Were Arrested in 158 Days
+#| warning: false
+#| message: false
+#| echo: false
+
+# Calculate the total number of individuals arrested
+total_arrested <- sum(protest_data$Arrested)
+#total_arrested
+
+# Calculate the total number of students arrested
+total_students_arrested <- sum(protest_data$Arrested.students)
+#total_students_arrested
+
+# Calculate the percentage of students among all arrested individuals
+percentage_students <- (total_students_arrested / total_arrested) * 100
+#percentage_students
+
+# Create a data frame for plotting
+arrest_data <- data.frame(
+  Category = c("Total Arrested", "Total Students Arrested"),
+  Count = c(total_arrested, total_students_arrested)
+)
+
+# Create the bar plot
+bar_plot <- ggplot(arrest_data, aes(x = Category, y = Count, fill = Category)) +
+  geom_bar(stat = "identity", fill = c("darkgray", "lightgray")) +
+  labs(x = "Category", y = "Count") +
+  theme_minimal() +
+  theme(legend.position = "none") +
+  geom_text(aes(label = Count), vjust = -0.3, size = 3.5) 
+
+# Display the plot
+print(bar_plot)
+
+```
+
+The @fig-protesters-killed shows a chronological sequence of dates and the corresponding total number of protesters killed during the 158-day protest period. The figure reveals an overall upward trend in the number of protesters killed, with occasional accelerations and fluctuations. Inflection points indicate significant junctures in the protest movement. The plot highlights the human cost of political unrest and underscores the importance of monitoring and documenting such events to promote accountability and justice.
+
+```{r, out.width="65%"}
+#| label: fig-protesters-killed
+#| include: true
+#| fig-cap: Total Protesters Killed in 158 Days
+#| warning: false
+#| message: false
+#| echo: false
+
+# Calculate the total number of protesters killed over time
+total_protesters_killed <- cumsum(protest_data$Protesters.Killed)
+#total_protesters_killed
+#62624 protesters killed in total
+
+plot_protesters_killed <- ggplot(protest_data, aes(x = Date, y = total_protesters_killed)) +
+  geom_line(color = "black") +
+  geom_point(color = "darkgray") +
+  theme_minimal() +
+  labs(x = "Date", y = "Total Protesters Killed") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+
+print(plot_protesters_killed)
+
+```
+\newpage
+
+To analyze the involvement of cities and universities over time, I created @fig-involved-cities-and-uni to illustrate the cumulative counts of cities and universities engaged in the protests. According to the dataset, the cumulative count of cities involved in the protests increased steadily over the 158-day period. It started at 2 cities and progressively rose to 221 cities by the end of the protest period. 
+
+```{r, out.width="70%"}
+#| label: fig-involved-cities-and-uni
+#| include: true
+#| fig-cap: Cities and Universities Involved in 158 Days
+#| warning: false
+#| message: false
+#| echo: false
+
+# Calculate cumulative counts of cities and universities involved
+protest_data$Cumulative_Cities <- cumsum(protest_data$Cities)
+protest_data$Cumulative_Universities <- cumsum(protest_data$Universities)
+
+ggplot(protest_data, aes(x = as.Date(Date, format="%Y-%m-%d"))) +
+  geom_area(aes(y = Cumulative_Cities, fill = "Cities Involved")) +
+  geom_area(aes(y = Cumulative_Universities, fill = "Universities Involved")) +
+  theme_minimal() +
+  labs(x = "Date", y = "Cumulative Count", fill = "Category") +
+  scale_fill_manual(values = c("Cities Involved" = "darkgray", "Universities Involved" = "lightgray"))
+
+```
+
+Similarly, the cumulative count of universities involved in the protests exhibited a consistent upward trend, starting from 0 universities and reaching 221 universities by the end of the period.
+@fig-involved-cities-and-uni effectively visualizes the temporal evolution of the protest movement in terms of geographical and educational participation. It showcases the increasing engagement of both cities and universities in the protests over time, indicating the broadening scope and sustained momentum of the protest movement.
+
+The dark gray area in the @fig-involved-cities-and-uni shows the total number of cities that participated in the protests and the light gray area represents the cumulative count of universities involved. The @fig-involved-cities-and-uni demonstrates that there was persistent growth in the involvement of both cities and universities throughout the 158-day period, which underscores the widespread nature of the protest movement. The upward trend in the cumulative counts of both cities and universities suggests ongoing mobilization and participation across diverse geographical locations and academic institutions.
+
+Overall, @fig-involved-cities-and-uni provides valuable insights into the geographical and educational dynamics of the protest movement, demonstrating that the protests were widespread and sustained over the observed period.
 
 
 # Discussion
 
-## First discussion point {#sec-first-point}
+## Human Rights Implications of the 2022 Iran Protests {#sec-first-point}
 
-The results emphasize the extent and persistence of public opposition during the 2022 protests in Iran. This is evident from the growing frequency of protests and the cumulative number of arrests and detainees. However, it is necessary to conduct a more in-depth analysis to understand the root causes behind these trends and their possible impact on future socio-political developments in Iran. 
+The conclusions presented in this paper are alarming and highlight serious concerns about the government's response to protests and their use of excessive force against demonstrators. By examining the arrests made during the protests, it has been found that a small number of students were arrested, which raises questions about the fairness and legality of police practices. To prevent such instances from happening again, it is essential to have independent oversight and accountability mechanisms in place. Researchers and activists have an important role to play in advocating for justice, accountability, and the protection of fundamental freedoms by documenting and analyzing human rights violations during times of civil unrest. There is a need for ongoing research to monitor human rights in unstable political contexts, such as Iran, with a focus on promoting accountability and upholding international human rights standards.
 
-## 2nd discussion point
+## Beyond Mahsa Amini: Exploring Gender Inequality and Activism in the Context of the 2022 Iran Protests
 
-The incident highlighted longstanding concerns about gender inequality and human rights violations in Iran, particularly regarding women's rights and the government's heavy-handed enforcement of moral codes. Calls for accountability and an end to violence against women resonated both within Iran and on the global stage, underscoring the significance of Amini's death as a catalyst for broader social and political activism.
+The tragic death of Mahsa Amini was a stark reminder of the gender inequality and human rights violations that exist in Iran. Her case highlighted the systemic challenges faced by women in Iranian society, particularly regarding their rights and freedoms. The incident, allegedly caused by the government's strict enforcement of moral codes, prompted outrage and condemnation in Iran and internationally.
 
-## Third discussion point
+Iran has long been criticized for its treatment of women, with numerous reports documenting discrimination, restrictive laws, and social norms that curtail women's autonomy and agency. Amini's death catalyzed renewed scrutiny of these issues, prompting widespread calls for accountability and justice.
 
-## Weaknesses and next steps
+Amini's case galvanized activists and ordinary citizens in Iran, leading to demonstrations, online campaigns, and public discussions challenging the status quo. Women's rights activists, in particular, seized the moment to demand reforms and greater protections for women against violence and discrimination.
+Amini's death resonated deeply on the global stage, sparking solidarity movements and garnering attention from human rights organizations, governments, and advocacy groups worldwide. The international community condemned the Iranian government's response to the protests and called for an end to the violence and repression against women.
+
+The death of Amini holds great significance beyond the recent protests in Iran. It highlights the broader issues of gender inequality, political repression, and human rights violations in the country. Her death underlines the urgent need for reform and systemic change to tackle the root causes of gender-based violence and discrimination. Amini's legacy lives on as a symbol of resilience and resistance, inspiring continued activism and advocacy for women's rights in Iran and worldwide.
+
+## The Importance of Accurate and Comprehensive Data in Understanding Civil Unrest
+
+The availability of accurate and comprehensive data is crucial in comprehending civil unrest. This paper emphasizes the difficulties arising from the lack of official data about the 2022 Iran protests. It highlights the reliance on estimates from organizations such as the Human Rights Activists News Agency, highlighting the need for more precise and comprehensive information. This is especially crucial when analyzing the dynamics of protest movements, comprehending the underlying factors that drive mobilization, and assessing the impact of government responses. Therefore, future research should explore alternative methods of collecting data and evaluate the effect of data gaps on the accuracy and reliability of findings.
+
+## Regional Differences within the Protest Movement and Strategies for Fostering Constructive Dialogue
+
+The intensity of protests varies across different cities and universities, highlighting the importance of comprehending socioeconomic and political factors that drive mobilization. Policymakers and activists need to understand these underlying grievances to promote social justice. Future studies could investigate these factors further and explore strategies for fostering constructive dialogue and reconciliation in divided societies. Recognizing the dynamics of the protest movement and addressing regional differences can help to promote a more inclusive and equitable society.
 
 ## Limitations and Future Research
 
-Although the HRANA dataset offers valuable insights, it has limitations in its data collection methods. Future research should improve data quality and expand the scope of analysis to include additional socio-economic and political variables.
+Although the HRANA dataset offers valuable insights, it has limitations in its data collection methods. Future research should improve data quality and expand the scope of analysis to include additional socioeconomic and political variables.
+The results emphasize the extent and persistence of public opposition during the 2022 protests in Iran. This is evident from the growing frequency of protests and the cumulative number of arrests and detainees. However, it is necessary to conduct a more in-depth analysis to understand the root causes behind these trends and their possible impact on future sociopolitical developments in Iran.
 
-
+## Conclusion
+This paper sheds light on the dynamics of the 2022 Iran protests using data compiled by the Human Rights Activists News Agency (HRANA) [@justin_oh_2022]. The analysis revealed significant trends and insights regarding the extent of public discontent, the government's response, and the sociopolitical impact of the protests. Over a 158-day period, the protests saw a staggering 62,624 protesters killed, highlighting the human cost of political unrest. Moreover, the involvement of 6,142 universities and 221 cities underscores the widespread nature of the movement and its significance across different segments of Iranian society. Additionally, the arrest of 2,385,074 individuals, including 77,440 students, signifies the scale of government crackdowns and the challenges faced by protesters. These findings underscore the urgent need for addressing grievances related to gender inequality, political repression, and human rights violations in Iran. Moving forward, continued monitoring and advocacy will be crucial in promoting accountability, justice, and positive sociopolitical change in the country.
 
 \newpage
 
