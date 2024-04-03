@@ -257,7 +257,7 @@ Overall, @fig-involved-cities-and-uni provides valuable insights into the geogra
 
 The conclusions presented in this paper are alarming and highlight serious concerns about the government's response to protests and their use of excessive force against demonstrators. By examining the arrests made during the protests, it has been found that a small number of students were arrested, which raises questions about the fairness and legality of police practices. To prevent such instances from happening again, it is essential to have independent oversight and accountability mechanisms in place. Researchers and activists have an important role to play in advocating for justice, accountability, and the protection of fundamental freedoms by documenting and analyzing human rights violations during times of civil unrest. There is a need for ongoing research to monitor human rights in unstable political contexts, such as Iran, with a focus on promoting accountability and upholding international human rights standards.
 
-## Beyond Mahsa Amini: Exploring Gender Inequality and Activism in the Context of the 2022 Iran Protests
+## Beyond Mahsa Amini: Exploring Gender Inequality and Activism
 
 The tragic death of Mahsa Amini was a stark reminder of the gender inequality and human rights violations that exist in Iran. Her case highlighted the systemic challenges faced by women in Iranian society, particularly regarding their rights and freedoms. The incident, allegedly caused by the government's strict enforcement of moral codes, prompted outrage and condemnation in Iran and internationally.
 
@@ -268,7 +268,7 @@ Amini's death resonated deeply on the global stage, sparking solidarity movement
 
 The death of Amini holds great significance beyond the recent protests in Iran. It highlights the broader issues of gender inequality, political repression, and human rights violations in the country. Her death underlines the urgent need for reform and systemic change to tackle the root causes of gender-based violence and discrimination. Amini's legacy lives on as a symbol of resilience and resistance, inspiring continued activism and advocacy for women's rights in Iran and worldwide.
 
-## The Importance of Accurate and Comprehensive Data in Understanding Civil Unrest
+## The Importance of Accurate and Comprehensive Data
 
 The availability of accurate and comprehensive data is crucial in comprehending civil unrest. This paper emphasizes the difficulties arising from the lack of official data about the 2022 Iran protests. It highlights the reliance on estimates from organizations such as the Human Rights Activists News Agency, highlighting the need for more precise and comprehensive information. This is especially crucial when analyzing the dynamics of protest movements, comprehending the underlying factors that drive mobilization, and assessing the impact of government responses. Therefore, future research should explore alternative methods of collecting data and evaluate the effect of data gaps on the accuracy and reliability of findings.
 
