@@ -1,9 +1,8 @@
 # Iran Women Life Freedom Protests
 
-
 ## Overview
 
-Gender inequality and discrimination against women have been legally established in Iran for many decades. After the tragedy of the death of Mahsa Amini, the revolution movement was shaped by the Zan, Zendegi, Azadi (Women, Life, Freedom) slogan. It shows that people and government are not one, and people can not take any further injustice from the brutal regime. This movement wasn’t just about women’s hijab; it was about people’s daily life difficulties after the Islamic regime came into power.
+The 2022 Iran protests were a significant period of civil unrest that brought attention to social inequality, political repression, and human rights violations. However, limited official data on the protests is available, which means we have to rely on estimates from organizations like the Human Rights Activists News Agency (HRANA). In this paper, we have analyzed a dataset compiled from HRANA's reports to provide insights into the dynamics of the protests, the extent of government crackdowns, and the scale of public discontent.
 
 ## File Structure
 
@@ -18,11 +17,10 @@ The repo is structured as:
 
 ## Data Extraction
 
-I accessed data from the Kaggle website for Daily Statistics of the 2022 Iran Protests. Here is the link to the data set: https://www.kaggle.com/datasets/justin2028/daily-statistics-of-the-2022-iran-protests?resource=download
-The data is behind a sign-in.
-To download the data, I scrolled down and download the Iran Protests Dataset (Ver 2.21.23).csv, and place it in my project data folder.
+I accessed data from the Kaggle website for Daily Statistics of the 2022 Iran Protests. Here is the link to the data set: [Kaggle Link](https://www.kaggle.com/datasets/justin2028/daily-statistics-of-the-2022-iran-protests?resource=download)
 
+The data is behind a sign-in and to download the data, I scrolled down and download the Iran Protests Dataset (Ver 2.21.23).csv, and place it in my project data folder.
 
 ## Statement on LLM usage
 
-Statement on LLM usage: Aspects of the code were written with the help of the autocomplete tool, ChatGPT. ChatGPT was used to resolve errors, clean up the data, create tables, and generate graphs. The entire chat history is available in `inputs/LLM/usage.txt`
+Statement on LLM usage: Aspects of the code were written with the help of the autocomplete tool, ChatGPT. ChatGPT was used to resolve errors, clean up the data, create tables, and generate graphs. The entire chat history is available in `other/LLM/usage.txt`
