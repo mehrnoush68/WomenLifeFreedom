@@ -34,7 +34,7 @@ protest_data <- read_parquet("../data/analysis_data/cleaned_protest_data.parquet
 
 # Introduction
 
-On 16 September 2022, Mahsa Amini, a 22-year-old woman died under police custody in Iran. Reportedly, she was arrested because of not wearing her hijab (headscarf) properly. While officials claimed she died from a heart attack, her family disputed this. CCTV footage showed her collapsing at a "re-education" center. Iranians, especially on social media, demanded justice using hash tags like #MahsaAmini. The incident highlighted concerns about women's rights and government oppression in Iran, drawing international attention and calls for accountability [@CNN2022].
+On 16 September 2022, Mahsa Amini, a 22-year-old woman died under police custody in Iran. Reportedly, she was arrested because of not wearing her hijab (headscarf) properly. While officials claimed she died from a heart attack, her family disputed this. CCTV footage showed her collapsing at a "re-education" center. Iranians, especially on social media, demanded justice using hashtags like #MahsaAmini. The incident highlighted concerns about women's rights and government oppression in Iran, drawing international attention and calls for accountability [@CNN2022].
 
 There have been protests in Iran due to various issues such as gender inequality, political oppression, and economic hardships. These issues were further amplified by the tragic death of Mahsa Amini. The protesters, under the banner of "Zan, Zendegi, Azadi" (Women, Life, Freedom), expressed their dissatisfaction with the government. However, there is no official data about the number of casualties, arrests, and other important metrics. To analyze the dynamics of the protests, the government's response, and the extent of public discontent, this paper uses data compiled by the Human Rights Activists News Agency (HRANA) [@justin_oh_2022].
 
@@ -42,7 +42,7 @@ The dataset used in this analysis reveals compelling insights into the 2022 Iran
 
 To further understand "Women Life, Freedom" movement, in [Data] and [Results], I talk about the nature of the data obtained and analyze the results garnered from the data with suitable tables and charts. Next, [Discussion] provides further insights and future areas of study. Finally, [Conclusion] summarizes my main findings. 
 
-The graphs and tables in this paper were created in R Studio using R [@citeR] and the analysis in a Quarto document. The analysis was conducted with the use of the `ggplot` [@ggplotRef], `tiddyverse` [@tidyverseRef], `knitr` [@knitrRef], `readr` [@readRef], `kableExtra` [@kableextraRef], `janitor` [@janitorRef], `tibble` [@tibbleRef], `arrow` [@arrow] and `dyplr` [@dplRef ] packages.
+The graphs and tables in this paper were created in R Studio using R [@citeR] and the analysis in a Quarto document. The analysis was conducted with the use of the `ggplot` [@ggplotRef], `tiddyverse` [@tidyverseRef], `knitr` [@knitrRef], `readr` [@readRef], `kableExtra` [@kableextraRef], `janitor` [@janitorRef], `tibble` [@tibbleRef], `arrow` [@arrow] and `dyplr` [@dplRef] packages.
 
 
 # Data {#sec-data}
@@ -73,7 +73,7 @@ selected_columns <- protest_data[protest_data$Date %in% random_dates,
 kable(selected_columns, 
       format = "markdown", 
       align = "c",
-      caption = "Ten Random Dataset Compiled By HRANA",
+      caption = "Ten Random Observation Compiled By HRANA",
       label = "tbl-protest-data")|>
   kable_styling(latex_options = c("striped", "hold_position"), bootstrap_options = "striped", full_width = FALSE)
 
@@ -104,9 +104,9 @@ ggplot(protest_data, aes(x = Date, y = Protesters.Killed)) +
 
 ```
 
-The @fig-arrested illustrates the dynamics of arrests during the 2022 Iran protests over a period of 158 days. The x-axis represents the timeline, spanning from the start to the end of the protest period, while the y-axis denotes the number of arrests. 
+@fig-arrested illustrates the dynamics of arrests during the 2022 Iran protests over a period of 158 days. The x-axis represents the timeline, spanning from the start to the end of the protest period, while the y-axis denotes the number of arrests. 
 
-The @fig-arrested features two lines: one depicting the cumulative count of individuals arrested (denoted by "Individuals Arrested" in black), and the other showing the cumulative count of students arrested (denoted by "Students Arrested" in dark gray). The plot provides a visual comparison between the total number of arrests and the subset of arrests involving students, offering insights into the extent of student involvement in the protests and the overall scale of government crackdowns during the observed period.
+@fig-arrested features two lines: one depicting the cumulative count of individuals arrested (denoted by "Individuals Arrested" in black), and the other showing the cumulative count of students arrested (denoted by "Students Arrested" in dark gray). The plot provides a visual comparison between the total number of arrests and the subset of arrests involving students, offering insights into the extent of student involvement in the protests and the overall scale of government crackdowns during the observed period.
 
 ```{r}
 #| label: fig-arrested
@@ -150,14 +150,14 @@ Based on the analysis, the number of protests has continuously increased over a 
 
 The analysis provides compelling insights into the arrest dynamics during the 158 days. The @fig-total-arrested depicts the total number of individuals arrested compared to the subset of students among them.
 
-The @fig-total-arrested illustrates the stark difference between the total number of individuals arrested and the number of students among them. The dark gray bars represent the total number of arrested individuals, while the light gray bars specifically denote the total number of students arrested. This visualization effectively highlights the proportion of students within the broader context of arrests during the protests.
+@fig-total-arrested illustrates the stark difference between the total number of individuals arrested and the number of students among them. The dark gray bars represent the total number of arrested individuals, while the light gray bars specifically denote the total number of students arrested. This visualization effectively highlights the proportion of students within the broader context of arrests during the protests.
 
 According to the data, 2,385,074 individuals were arrested during this period, among whom 77,440 were students, indicating that students comprised approximately 3.25% of all arrested individuals. The dynamics of arrests during protests can reveal important information about the consequences for those involved. For instance, according to @fig-total-arrested, a relatively small number of students were among those arrested, which raises concerns about whether certain groups of people were unfairly targeted or profiled by law enforcement officials. This situation highlights the necessity for more scrutiny and investigation into potential inequalities and injustices within the judicial and law enforcement systems.
 
 ```{r}
 #| label: fig-total-arrested
 #| include: true
-#| fig-cap: Total of Individuals and Student Who Were Arrested in 158 Days
+#| fig-cap: Total of Individuals and Students Who Were Arrested in 158 Days
 #| warning: false
 #| message: false
 #| echo: false
@@ -185,7 +185,7 @@ bar_plot <- ggplot(arrest_data, aes(x = Category, y = Count, fill = Category)) +
   geom_bar(stat = "identity", fill = c("darkgray", "lightgray")) +
   labs(x = "Category", y = "Count") +
   theme_minimal() +
-  theme(legend.position = "none") +
+  theme(legend.position = "none") +2
   geom_text(aes(label = Count), vjust = -0.3, size = 3.5) 
 
 # Display the plot
@@ -193,7 +193,7 @@ print(bar_plot)
 
 ```
 
-The @fig-protesters-killed shows a chronological sequence of dates and the corresponding total number of protesters killed during the 158-day protest period. The figure reveals an overall upward trend in the number of protesters killed, with occasional accelerations and fluctuations. Inflection points indicate significant junctures in the protest movement. The plot highlights the human cost of political unrest and underscores the importance of monitoring and documenting such events to promote accountability and justice.
+@fig-protesters-killed shows a chronological sequence of dates and the corresponding total number of protesters killed during the 158-day protest period. The figure reveals an overall upward trend in the number of protesters killed, with occasional accelerations and fluctuations. Inflection points indicate significant junctures in the protest movement. The plot highlights the human cost of political unrest and underscores the importance of monitoring and documenting such events to promote accountability and justice.
 
 ```{r, out.width="65%"}
 #| label: fig-protesters-killed
@@ -246,7 +246,7 @@ ggplot(protest_data, aes(x = as.Date(Date, format="%Y-%m-%d"))) +
 Similarly, the cumulative count of universities involved in the protests exhibited a consistent upward trend, starting from 0 universities and reaching 221 universities by the end of the period.
 @fig-involved-cities-and-uni effectively visualizes the temporal evolution of the protest movement in terms of geographical and educational participation. It showcases the increasing engagement of both cities and universities in the protests over time, indicating the broadening scope and sustained momentum of the protest movement.
 
-The dark gray area in the @fig-involved-cities-and-uni shows the total number of cities that participated in the protests and the light gray area represents the cumulative count of universities involved. The @fig-involved-cities-and-uni demonstrates that there was persistent growth in the involvement of both cities and universities throughout the 158-day period, which underscores the widespread nature of the protest movement. The upward trend in the cumulative counts of both cities and universities suggests ongoing mobilization and participation across diverse geographical locations and academic institutions.
+The dark gray area in @fig-involved-cities-and-uni shows the total number of cities that participated in the protests and the light gray area represents the cumulative count of universities involved. @fig-involved-cities-and-uni demonstrates that there was persistent growth in the involvement of both cities and universities throughout the 158-day period, which underscores the widespread nature of the protest movement. The upward trend in the cumulative counts of both cities and universities suggests ongoing mobilization and participation across diverse geographical locations and academic institutions.
 
 Overall, @fig-involved-cities-and-uni provides valuable insights into the geographical and educational dynamics of the protest movement, demonstrating that the protests were widespread and sustained over the observed period.
 
