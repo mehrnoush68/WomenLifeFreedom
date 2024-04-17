@@ -73,7 +73,7 @@ selected_columns <- protest_data[protest_data$Date %in% random_dates,
 kable(selected_columns, 
       format = "markdown", 
       align = "c",
-      caption = "Ten Random Dataset Compiled By HRANA",
+      caption = "Ten Random Entries Compiled By HRANA",
       label = "tbl-protest-data")|>
   kable_styling(latex_options = c("striped", "hold_position"), bootstrap_options = "striped", full_width = FALSE)
 
@@ -104,9 +104,9 @@ ggplot(protest_data, aes(x = Date, y = Protesters.Killed)) +
 
 ```
 
-The @fig-arrested illustrates the dynamics of arrests during the 2022 Iran protests over a period of 158 days. The x-axis represents the timeline, spanning from the start to the end of the protest period, while the y-axis denotes the number of arrests. 
+@fig-arrested illustrates the dynamics of arrests during the 2022 Iran protests over a period of 158 days. The x-axis represents the timeline, spanning from the start to the end of the protest period, while the y-axis denotes the number of arrests. 
 
-The @fig-arrested features two lines: one depicting the cumulative count of individuals arrested (denoted by "Individuals Arrested" in black), and the other showing the cumulative count of students arrested (denoted by "Students Arrested" in dark gray). The plot provides a visual comparison between the total number of arrests and the subset of arrests involving students, offering insights into the extent of student involvement in the protests and the overall scale of government crackdowns during the observed period.
+@fig-arrested features two lines: one depicting the cumulative count of individuals arrested (denoted by "Individuals Arrested" in black), and the other showing the cumulative count of students arrested (denoted by "Students Arrested" in dark gray). The plot provides a visual comparison between the total number of arrests and the subset of arrests involving students, offering insights into the extent of student involvement in the protests and the overall scale of government crackdowns during the observed period.
 
 ```{r}
 #| label: fig-arrested
@@ -125,7 +125,7 @@ ggplot(protest_data, aes(x = Date)) +
 
 ```
 
-@fig-arrests-detainees illustrates the cumulative count of arrests and detainees identified over time during the protests. The area chart displays the progression of these two metrics, providing insights into the trend of arrests and detentions throughout the specified period. The light gray area represents the cumulative count of individuals arrested, while the dark gray area represents the cumulative count of detainees identified.
+@fig-arrests-detainees illustrates the cumulative count of arrests and detainees identified over time during the protests.Detainees are people who were held in custody temporarily for less than 24 hours, while arrests consist of individuals who may still be in prison. By tracking both metrics, we can gain valuable insights into the authorities' response to the protests and the way they treat individuals involved. The area chart displays the progression of these two metrics, providing insights into the trend of arrests and detentions throughout the specified period. The light gray area represents the cumulative count of individuals arrested, while the dark gray area represents the cumulative count of detainees identified.
 
 ```{r}
 #| include: true
@@ -139,7 +139,7 @@ ggplot(protest_data, aes(x = as.Date(Date, format="%m/%d/%Y"))) +
   geom_area(aes(y = Arrested, fill = "Individuals Arrested")) +
   geom_area(aes(y = Detainees, fill = "Detainees Identified")) +
   theme_minimal() +
-  labs(x = "Date", y = "Cumulative Count", fill = "Fill") +
+  labs(x = "Date", y = "Cumulative Count of Arrests and Detainees", fill = "Legend") +
   scale_fill_manual(values = c("Individuals Arrested" = "lightgray", "Detainees Identified" = "darkgray"))
 
 ```
@@ -148,9 +148,9 @@ ggplot(protest_data, aes(x = as.Date(Date, format="%m/%d/%Y"))) +
 
 Based on the analysis, the number of protests has continuously increased over a 158-day period, indicating persistent dissatisfaction among the public. Additionally, the dataset displays significant variations in the intensity of protests across different cities and universities, implying regional differences within the protest movement.
 
-The analysis provides compelling insights into the arrest dynamics during the 158 days. The @fig-total-arrested depicts the total number of individuals arrested compared to the subset of students among them.
+The analysis provides compelling insights into the arrest dynamics during the 158 days. @fig-total-arrested depicts the total number of individuals arrested compared to the subset of students among them.
 
-The @fig-total-arrested illustrates the stark difference between the total number of individuals arrested and the number of students among them. The dark gray bars represent the total number of arrested individuals, while the light gray bars specifically denote the total number of students arrested. This visualization effectively highlights the proportion of students within the broader context of arrests during the protests.
+@fig-total-arrested illustrates the stark difference between the total number of individuals arrested and the number of students among them. The dark gray bars represent the total number of arrested individuals, while the light gray bars specifically denote the total number of students arrested. This visualization effectively highlights the proportion of students within the broader context of arrests during the protests.
 
 According to the data, 2,385,074 individuals were arrested during this period, among whom 77,440 were students, indicating that students comprised approximately 3.25% of all arrested individuals. The dynamics of arrests during protests can reveal important information about the consequences for those involved. For instance, according to @fig-total-arrested, a relatively small number of students were among those arrested, which raises concerns about whether certain groups of people were unfairly targeted or profiled by law enforcement officials. This situation highlights the necessity for more scrutiny and investigation into potential inequalities and injustices within the judicial and law enforcement systems.
 
@@ -246,7 +246,7 @@ ggplot(protest_data, aes(x = as.Date(Date, format="%Y-%m-%d"))) +
 Similarly, the cumulative count of universities involved in the protests exhibited a consistent upward trend, starting from 0 universities and reaching 221 universities by the end of the period.
 @fig-involved-cities-and-uni effectively visualizes the temporal evolution of the protest movement in terms of geographical and educational participation. It showcases the increasing engagement of both cities and universities in the protests over time, indicating the broadening scope and sustained momentum of the protest movement.
 
-The dark gray area in the @fig-involved-cities-and-uni shows the total number of cities that participated in the protests and the light gray area represents the cumulative count of universities involved. The @fig-involved-cities-and-uni demonstrates that there was persistent growth in the involvement of both cities and universities throughout the 158-day period, which underscores the widespread nature of the protest movement. The upward trend in the cumulative counts of both cities and universities suggests ongoing mobilization and participation across diverse geographical locations and academic institutions.
+The dark gray area in @fig-involved-cities-and-uni shows the total number of cities that participated in the protests and the light gray area represents the cumulative count of universities involved. @fig-involved-cities-and-uni demonstrates that there was persistent growth in the involvement of both cities and universities throughout the 158-day period, which underscores the widespread nature of the protest movement. The upward trend in the cumulative counts of both cities and universities suggests ongoing mobilization and participation across diverse geographical locations and academic institutions.
 
 Overall, @fig-involved-cities-and-uni provides valuable insights into the geographical and educational dynamics of the protest movement, demonstrating that the protests were widespread and sustained over the observed period.
 
