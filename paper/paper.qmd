@@ -38,7 +38,7 @@ On 16 September 2022, Mahsa Amini, a 22-year-old woman died under police custody
 
 There have been protests in Iran due to various issues such as gender inequality, political oppression, and economic hardships. These issues were further amplified by the tragic death of Mahsa Amini. The protesters, under the banner of "Zan, Zendegi, Azadi" (Women, Life, Freedom), expressed their dissatisfaction with the government. However, there is no official data about the number of casualties, arrests, and other important metrics. To analyze the dynamics of the protests, the government's response, and the extent of public discontent, this paper uses data compiled by the Human Rights Activists News Agency (HRANA) [@justin_oh_2022].
 
-The dataset used in this analysis reveals compelling insights into the 2022 Iran protests. Over a period of 158 days, the data documented 62624 protesters killed, 6142 universities involved, 221 cities participating, and 2,385,074 individuals arrested, among whom 77,440 were students. These numbers underscore the gravity of the protests and the widespread dissatisfaction among the Iranian public, as well as the significant involvement of students in the movement.
+[@justin_oh_2022] used in this analysis provides significant insights into the 2022 Iran protests. The data was collected over 158 days and documented 530 protesters, 71 children, and 70 security personnel killed. Additionally, it recorded the involvement of 144 universities and 165 cities in the protests. The number of individuals arrested was 19763, and 723 were students. The data also revealed that the total number of deaths was 671, with 79% being protesters, 10.6% children, and 10.4% security personnel. Moreover, the ratio of universities to cities involved in the protests ranged from 0 to around 0.87. These numbers highlight the severity of the protests, the widespread dissatisfaction among the Iranian public, and the notable participation of students in the movement.
 
 To further understand "Women Life, Freedom" movement, in [Data] and [Results], I talk about the nature of the data obtained and analyze the results garnered from the data with suitable tables and charts. Next, [Discussion] provides further insights and future areas of study. Finally, [Conclusion] summarizes my main findings. 
 
@@ -80,8 +80,13 @@ kable(selected_columns,
 
 ```
 
-@fig-protests-protesters-killed illustrates the trend in the number of protests and the total number of protesters killed over 158 days. The left panel shows the number of protests recorded each day, while the right panel displays the total number of protesters killed on those respective days. This visual representation helps in understanding the dynamics between the intensity of protests and the level of violence during the specified period.
+@fig-protests-protesters-killed illustrates the trend in the number of protests and the total number of protesters killed over 158 days. The left panel shows the number of protests recorded each day, while the right panel displays the total number of protesters killed on those respective days. This visual representation helps in understanding the dynamics between the intensity of protests and the level of violence during the specified period. 
+It is important to mention that there was a significant rise in the number of deaths on September 30th. The number of individuals killed during the protest increased from 122 on the previous day to 226, which is a considerable spike. This sudden increase highlights the unpredictable nature of the situation and the extreme level of violence that took place during that critical moment in the protest movement.
 
+> After demonstrators came out in Zahedan to protest the reported rape of a local girl by a police official, the regime responded with gunfire on September 30, 2022.
+> [@afary_anderson_2022]
+
+\newpage
 ```{r}
 #| label: fig-protests-protesters-killed
 #| include: true
@@ -100,15 +105,13 @@ ggplot(protest_data, aes(x = Date, y = Protests)) +
 ggplot(protest_data, aes(x = Date, y = Protesters.Killed)) +
   geom_point(alpha = 0.8) +
   theme_minimal() +
-  labs(x = "Date", y = "The total Number of Protestors' Death")
+  labs(x = "Date", y = "The total Number of Protesters' Death")
 
 ```
 
 @fig-arrested illustrates the dynamics of arrests during the 2022 Iran protests over a period of 158 days. The x-axis represents the timeline, spanning from the start to the end of the protest period, while the y-axis denotes the number of arrests. 
 
-@fig-arrested features two lines: one depicting the cumulative count of individuals arrested (denoted by "Individuals Arrested" in black), and the other showing the cumulative count of students arrested (denoted by "Students Arrested" in dark gray). The plot provides a visual comparison between the total number of arrests and the subset of arrests involving students, offering insights into the extent of student involvement in the protests and the overall scale of government crackdowns during the observed period.
-
-```{r}
+```{r, out.width="78%"}
 #| label: fig-arrested
 #| include: true
 #| fig-cap: Number of Individuals and student Arrested in 158 Days
@@ -124,6 +127,8 @@ ggplot(protest_data, aes(x = Date)) +
   theme_minimal()
 
 ```
+
+@fig-arrested features two lines: one depicting the cumulative count of individuals arrested (denoted by "Individuals Arrested" in black), and the other showing the cumulative count of students arrested (denoted by "Students Arrested" in dark gray). The plot provides a visual comparison between the total number of arrests and the subset of arrests involving students, offering insights into the extent of student involvement in the protests and the overall scale of government crackdowns during the observed period.
 
 @fig-arrests-detainees illustrates the cumulative count of arrests and detainees identified over time during the protests.Detainees are people who were held in custody temporarily for less than 24 hours, while arrests consist of individuals who may still be in prison. By tracking both metrics, we can gain valuable insights into the authorities' response to the protests and the way they treat individuals involved. The area chart displays the progression of these two metrics, providing insights into the trend of arrests and detentions throughout the specified period. The light gray area represents the cumulative count of individuals arrested, while the dark gray area represents the cumulative count of detainees identified.
 
@@ -148,107 +153,98 @@ ggplot(protest_data, aes(x = as.Date(Date, format="%m/%d/%Y"))) +
 
 Based on the analysis, the number of protests has continuously increased over a 158-day period, indicating persistent dissatisfaction among the public. Additionally, the dataset displays significant variations in the intensity of protests across different cities and universities, implying regional differences within the protest movement.
 
-The analysis provides compelling insights into the arrest dynamics during the 158 days. @fig-total-arrested depicts the total number of individuals arrested compared to the subset of students among them.
-
-@fig-total-arrested illustrates the stark difference between the total number of individuals arrested and the number of students among them. The dark gray bars represent the total number of arrested individuals, while the light gray bars specifically denote the total number of students arrested. This visualization effectively highlights the proportion of students within the broader context of arrests during the protests.
-
-According to the data, 2,385,074 individuals were arrested during this period, among whom 77,440 were students, indicating that students comprised approximately 3.25% of all arrested individuals. The dynamics of arrests during protests can reveal important information about the consequences for those involved. For instance, according to @fig-total-arrested, a relatively small number of students were among those arrested, which raises concerns about whether certain groups of people were unfairly targeted or profiled by law enforcement officials. This situation highlights the necessity for more scrutiny and investigation into potential inequalities and injustices within the judicial and law enforcement systems.
+@fig-Daily-Death shared valuable insights regarding the changing dynamics of protester fatalities over a period of 158 days. The data shows that the number of protester deaths fluctuated from day to day, indicating varying levels of intensity in the conflict or protests. Some days had a high number of deaths (such as September 30th), while there were no deaths or even a decrease in deaths on other days. This data can provide useful insights into the dynamics of the conflict, helping us to understand trends, identify critical periods of escalation, and evaluate the effectiveness of interventions aimed at reducing violence and protecting civilians.
 
 ```{r}
-#| label: fig-total-arrested
+#| label: fig-Daily-Death
 #| include: true
-#| fig-cap: Total of Individuals and Student Who Were Arrested in 158 Days
+#| fig-cap: Daily Change in Death Toll of Protesters in 158 Days
 #| warning: false
 #| message: false
 #| echo: false
 
-# Calculate the total number of individuals arrested
-total_arrested <- sum(protest_data$Arrested)
-#total_arrested
+# Calculate daily change in the death toll
+protest_data$Daily_Death_Change <- c(0, diff(protest_data$Protesters.Killed))
 
-# Calculate the total number of students arrested
-total_students_arrested <- sum(protest_data$Arrested.students)
-#total_students_arrested
+#protest_data$Daily_Death_Change
 
-# Calculate the percentage of students among all arrested individuals
-percentage_students <- (total_students_arrested / total_arrested) * 100
-#percentage_students
-
-# Create a data frame for plotting
-arrest_data <- data.frame(
-  Category = c("Total Arrested", "Total Students Arrested"),
-  Count = c(total_arrested, total_students_arrested)
-)
-
-# Create the bar plot
-bar_plot <- ggplot(arrest_data, aes(x = Category, y = Count, fill = Category)) +
-  geom_bar(stat = "identity", fill = c("darkgray", "lightgray")) +
-  labs(x = "Category", y = "Count") +
-  theme_minimal() +
-  theme(legend.position = "none") +
-  geom_text(aes(label = Count), vjust = -0.3, size = 3.5) 
-
-# Display the plot
-print(bar_plot)
+# Plot 1: Line Plot - Daily Change in Death Toll of Protesters Over Time
+ggplot(protest_data, aes(x = as.Date(Date, "%m/%d/%Y"), y = Daily_Death_Change)) +
+  geom_line(color = "black") +
+  labs(x = "Date",
+       y = "Daily Change in Death Toll") +
+  theme_minimal()
 
 ```
-
-The @fig-protesters-killed shows a chronological sequence of dates and the corresponding total number of protesters killed during the 158-day protest period. The figure reveals an overall upward trend in the number of protesters killed, with occasional accelerations and fluctuations. Inflection points indicate significant junctures in the protest movement. The plot highlights the human cost of political unrest and underscores the importance of monitoring and documenting such events to promote accountability and justice.
+@fig-Percentage-Death-all-categories shows the percentage breakdown of deaths among protesters, children, and security personnel during the 158-day protest period. According to @fig-Percentage-Death-all-categories, out of the 671 deaths that occurred during a specific timeframe, the majority (approximately 79%) were protesters. Unfortunately, children also suffered significant losses, accounting for around 10.6% of the total deaths. Security personnel represented a slightly smaller proportion, comprising approximately 10.4% of the fatalities. This visualization highlights the need to protect vulnerable groups affected by the ongoing conflict, especially protesters and children.
 
 ```{r, out.width="65%"}
-#| label: fig-protesters-killed
+#| label: fig-Percentage-Death-all-categories
 #| include: true
-#| fig-cap: Total Protesters Killed in 158 Days
+#| fig-cap: Percentages of Protesters, children and Security Death in 158 Days
 #| warning: false
 #| message: false
 #| echo: false
 
-# Calculate the total number of protesters killed over time
-total_protesters_killed <- cumsum(protest_data$Protesters.Killed)
-#total_protesters_killed
-#62624 protesters killed in total
+# Extract totals from the last row of the dataset
+# total_deaths <- tail(protest_data, 1)[, c("Protesters.Killed", "Children.Killed", "Security.Killed")]
 
-plot_protesters_killed <- ggplot(protest_data, aes(x = Date, y = total_protesters_killed)) +
-  geom_line(color = "black") +
-  geom_point(color = "darkgray") +
-  theme_minimal() +
-  labs(x = "Date", y = "Total Protesters Killed") +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+# Sum the values across columns
+# total_deaths$Sum <- rowSums(total_deaths)
+# total_deaths # Total death is 671
 
-print(plot_protesters_killed)
+# Calculate percentages
+total_deaths <- tail(protest_data, 1) |>
+  mutate(
+    Protesters_Percentage = Protesters.Killed / sum(Protesters.Killed, Children.Killed, Security.Killed) * 100,
+    Children_Percentage = Children.Killed / sum(Protesters.Killed, Children.Killed, Security.Killed) * 100,
+    Security_Percentage = Security.Killed / sum(Protesters.Killed, Children.Killed, Security.Killed) * 100
+  ) |>
+  select(Protesters_Percentage, Children_Percentage, Security_Percentage) |>
+  t() |>
+  as.data.frame() |>
+  setNames(c("Percentage")) |>
+  mutate(Category = c("Protesters", "Children", "Security"))
+
+
+# Plot
+ggplot(total_deaths, aes(x = Category, y = Percentage, fill = Category)) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = paste0(round(Percentage, 1), "%")), vjust = -0.5, size = 3) +
+  scale_fill_grey(start = 0.2, end = 0.8) +
+  labs(x = "Category",
+       y = "Percentage") +
+  theme_minimal()
 
 ```
 \newpage
 
-To analyze the involvement of cities and universities over time, I created @fig-involved-cities-and-uni to illustrate the cumulative counts of cities and universities engaged in the protests. According to the dataset, the cumulative count of cities involved in the protests increased steadily over the 158-day period. It started at 2 cities and progressively rose to 221 cities by the end of the protest period. 
-
+To analyze the involvement of cities and universities over time, I created @fig-ratio-universities-to-cities to illustrate how the proportion of universities to cities involved in protests changes over time. According to the dataset, the cumulative count of cities involved in the protests increased steadily over the 158-day period. It started in 2 cities and progressively rose to 221 cities by the end of the protest period. 
 ```{r, out.width="70%"}
-#| label: fig-involved-cities-and-uni
+#| label: fig-ratio-universities-to-cities
 #| include: true
-#| fig-cap: Cities and Universities Involved in 158 Days
+#| fig-cap: Ratio of Universities to Cities Involved in 158 Days
 #| warning: false
 #| message: false
 #| echo: false
 
-# Calculate cumulative counts of cities and universities involved
-protest_data$Cumulative_Cities <- cumsum(protest_data$Cities)
-protest_data$Cumulative_Universities <- cumsum(protest_data$Universities)
+# Calculate the ratio of universities to cities involved for each date
+ratio_data <- protest_data |>
+  mutate(Ratio_Universities_to_Cities = Universities / Cities) |>
+  select(Date, Ratio_Universities_to_Cities)
 
-ggplot(protest_data, aes(x = as.Date(Date, format="%Y-%m-%d"))) +
-  geom_area(aes(y = Cumulative_Cities, fill = "Cities Involved")) +
-  geom_area(aes(y = Cumulative_Universities, fill = "Universities Involved")) +
-  theme_minimal() +
-  labs(x = "Date", y = "Cumulative Count", fill = "Category") +
-  scale_fill_manual(values = c("Cities Involved" = "darkgray", "Universities Involved" = "lightgray"))
+# Plot the ratio over time
+ggplot(ratio_data, aes(x = Date, y = Ratio_Universities_to_Cities)) +
+  geom_line() +
+  labs(x = "Date",
+       y = "Ratio (Universities / Cities)") +
+  theme_minimal()
 
 ```
+\newpage
+In @fig-ratio-universities-to-cities, Each point on the plot represents a specific date, and the y-axis represents the ratio of universities to cities involved. For example, if the ratio is 0.5 on a certain date, it means that there are, on average, half as many universities involved in protests as there are cities. Based on this ratio, we can observe that there were initial changes in the ratio of universities to cities involved in protests, ranging from 0 to around 0.85. However, there is an overall increasing trend in the ratio, suggesting that more universities are getting involved relative to the number of cities involved in protests. Towards the end of the data, the ratio stabilizes around 0.87 to 0.88, indicating that the rate of increase in university involvement might have slowed down, reaching a plateau. Although there are changes in the ratio over time, there is still an upward trend in the level of university involvement relative to the cities involved. This data suggests a gradual increase in university involvement in protests, which could be influenced by various factors such as changes in university policies, the progression of the protest movement, and the dynamics of activism within different regions.
 
-Similarly, the cumulative count of universities involved in the protests exhibited a consistent upward trend, starting from 0 universities and reaching 221 universities by the end of the period.
-@fig-involved-cities-and-uni effectively visualizes the temporal evolution of the protest movement in terms of geographical and educational participation. It showcases the increasing engagement of both cities and universities in the protests over time, indicating the broadening scope and sustained momentum of the protest movement.
-
-The dark gray area in @fig-involved-cities-and-uni shows the total number of cities that participated in the protests and the light gray area represents the cumulative count of universities involved. @fig-involved-cities-and-uni demonstrates that there was persistent growth in the involvement of both cities and universities throughout the 158-day period, which underscores the widespread nature of the protest movement. The upward trend in the cumulative counts of both cities and universities suggests ongoing mobilization and participation across diverse geographical locations and academic institutions.
-
-Overall, @fig-involved-cities-and-uni provides valuable insights into the geographical and educational dynamics of the protest movement, demonstrating that the protests were widespread and sustained over the observed period.
+Overall, @fig-ratio-universities-to-cities provides valuable insights into the geographical and educational dynamics of the protest movement, demonstrating that the protests were widespread and sustained over the observed period.
 
 
 # Discussion
@@ -281,7 +277,13 @@ Although the HRANA dataset offers valuable insights, it has limitations in its d
 The results emphasize the extent and persistence of public opposition during the 2022 protests in Iran. This is evident from the growing frequency of protests and the cumulative number of arrests and detainees. However, it is necessary to conduct a more in-depth analysis to understand the root causes behind these trends and their possible impact on future sociopolitical developments in Iran.
 
 ## Conclusion
-This paper sheds light on the dynamics of the 2022 Iran protests using data compiled by the Human Rights Activists News Agency (HRANA) [@justin_oh_2022]. The analysis revealed significant trends and insights regarding the extent of public discontent, the government's response, and the sociopolitical impact of the protests. Over a 158-day period, the protests saw a staggering 62,624 protesters killed, highlighting the human cost of political unrest. Moreover, the involvement of 6,142 universities and 221 cities underscores the widespread nature of the movement and its significance across different segments of Iranian society. Additionally, the arrest of 2,385,074 individuals, including 77,440 students, signifies the scale of government crackdowns and the challenges faced by protesters. These findings underscore the urgent need for addressing grievances related to gender inequality, political repression, and human rights violations in Iran. Moving forward, continued monitoring and advocacy will be crucial in promoting accountability, justice, and positive sociopolitical change in the country.
+This paper sheds light on the complex dynamics of the 2022 Iran protests, drawing on data compiled by the Human Rights Activists News Agency (HRANA) [@justin_oh_2022]. Through careful analysis, I have revealed significant trends and insights regarding the extent of public discontent, the government's response, and the far-reaching sociopolitical implications of the protests.
+
+During a period of 158 days, a series of protests took place, which resulted in a tragic outcome. In total, 671 people lost their lives, including 530 protesters, 71 children, and 70 security personnel. This means that protesters make up a significant 79% of the casualties, while children and security personnel accounted for 10.6% and 10.4%, respectively. These numbers highlight the devastating human cost of political unrest and the need for peaceful and constructive dialogue. Moreover, The participation of 144 universities and 165 cities highlights the broad scope of the movement, which includes people from different demographics and regions in Iranian society. The ratio of universities to cities involved in the protests, which ranges from 0 to approximately 0.87, reflects the evolving nature of activism and dissent across educational and urban landscapes. The arrest of 19,763 people, among them 723 students, highlights the severe measures taken by the government and the challenges faced by protesters who are trying to express their dissent. These numbers are a stark reminder of the pressing need to address the root causes of gender inequality, political oppression, and human rights violations in Iran.
+
+Moving forward, it is essential that we remain vigilant, monitor the situation closely, and advocate for justice and accountability in the country. We can achieve positive sociopolitical change by amplifying the voices of the marginalized, advocating for reforms, and upholding international human rights standards. Together, we can build a more equitable and just society that benefits all.
+
+
 
 \newpage
 
