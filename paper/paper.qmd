@@ -40,9 +40,9 @@ There have been protests in Iran due to various issues such as gender inequality
 
 [@justin_oh_2022] used in this analysis provides significant insights into the 2022 Iran protests. The data was collected over 158 days and documented 530 protesters, 71 children, and 70 security personnel killed. Additionally, it recorded the involvement of 144 universities and 165 cities in the protests. The number of individuals arrested was 19763, and 723 were students. The data also revealed that the total number of deaths was 671, with 79% being protesters, 10.6% children, and 10.4% security personnel. Moreover, the ratio of universities to cities involved in the protests ranged from 0 to around 0.87. These numbers highlight the severity of the protests, the widespread dissatisfaction among the Iranian public, and the notable participation of students in the movement.
 
-To further understand "Women Life, Freedom" movement, in [Data] and [Results], I talk about the nature of the data obtained and analyze the results garnered from the data with suitable tables and charts. Next, [Discussion] provides further insights and future areas of study. Finally, [Conclusion] summarizes my main findings. 
-
 The graphs and tables in this paper were created in R Studio using R [@citeR] and the analysis in a Quarto document. The analysis was conducted with the use of the `ggplot` [@ggplotRef], `tiddyverse` [@tidyverseRef], `knitr` [@knitrRef], `readr` [@readRef], `kableExtra` [@kableextraRef], `janitor` [@janitorRef], `tibble` [@tibbleRef], `arrow` [@arrow] and `dyplr` [@dplRef ] packages.
+
+To further understand "Women Life, Freedom" movement, in [Data] and [Results], I talk about the nature of the data obtained and analyze the results garnered from the data with suitable tables and charts. Next, [Discussion] provides further insights and future areas of study. Finally, [Conclusion] summarizes my main findings. 
 
 
 # Data {#sec-data}
