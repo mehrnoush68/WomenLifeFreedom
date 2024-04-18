@@ -242,6 +242,7 @@ ggplot(ratio_data, aes(x = Date, y = Ratio_Universities_to_Cities)) +
 
 ```
 \newpage
+
 In @fig-ratio-universities-to-cities, Each point on the plot represents a specific date, and the y-axis represents the ratio of universities to cities involved. For example, if the ratio is 0.5 on a certain date, it means that there are, on average, half as many universities involved in protests as there are cities. Based on this ratio, we can observe that there were initial changes in the ratio of universities to cities involved in protests, ranging from 0 to around 0.85. However, there is an overall increasing trend in the ratio, suggesting that more universities are getting involved relative to the number of cities involved in protests. Towards the end of the data, the ratio stabilizes around 0.87 to 0.88, indicating that the rate of increase in university involvement might have slowed down, reaching a plateau. Although there are changes in the ratio over time, there is still an upward trend in the level of university involvement relative to the cities involved. This data suggests a gradual increase in university involvement in protests, which could be influenced by various factors such as changes in university policies, the progression of the protest movement, and the dynamics of activism within different regions.
 
 Overall, @fig-ratio-universities-to-cities provides valuable insights into the geographical and educational dynamics of the protest movement, demonstrating that the protests were widespread and sustained over the observed period.
@@ -283,10 +284,7 @@ During a period of 158 days, a series of protests took place, which resulted in 
 
 Moving forward, it is essential that we remain vigilant, monitor the situation closely, and advocate for justice and accountability in the country. We can achieve positive sociopolitical change by amplifying the voices of the marginalized, advocating for reforms, and upholding international human rights standards. Together, we can build a more equitable and just society that benefits all.
 
-
-
 \newpage
-
 
 # References
 
