@@ -1,7 +1,7 @@
 #### Preamble ####
 # Purpose: Tests the data
 # Author: Mehrnoush Mohammadi
-# Date: 27 March 2024
+# Date: 17 April 2024
 # Contact: mm.mohammadi@mail.utoronto.ca
 # License: MIT
 # Pre-requisites:
@@ -26,7 +26,12 @@ print(missing_values)
 duplicate_rows <- anyDuplicated(protest_data)
 print(duplicate_rows)
 
-# Test 3: Check that the date range is within expected bounds
-protest_Date <- protest_data$date
+# Test 3: Check that the date range is within expected bounds in the dataset
+protest_Date <- protest_data$Date
 print(min(protest_Date))
 print(max(protest_Date))
+
+# Test 4: Check that for missing dates in the dataset
+full_date_range <- seq(min(protest_Date), max(protest_Date), by = "day")
+missing_dates <- setdiff(full_date_range, protest_Date)
+print(missing_dates)
